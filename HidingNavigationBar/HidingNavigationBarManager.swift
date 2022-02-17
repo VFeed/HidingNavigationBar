@@ -367,10 +367,12 @@ open class HidingNavigationBarManager: NSObject, UIScrollViewDelegate, UIGesture
             return
         }
         
-        if scrollView.contentInsetAdjustmentBehavior == .automatic {
-            var contentInset = scrollViewContentInset
-            contentInset.top = top
-            scrollView.contentInset = contentInset
+        if #available(iOS 11.0, *) {
+            if scrollView.contentInsetAdjustmentBehavior == .automatic {
+                var contentInset = scrollViewContentInset
+                contentInset.top = top
+                scrollView.contentInset = contentInset
+            }
         }
         var scrollInsets = scrollView.scrollIndicatorInsets
         scrollInsets.top = top
